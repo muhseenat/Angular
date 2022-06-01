@@ -1,3 +1,6 @@
+It is a sample project  for studying Angular 
+
+
 # AngularHeroes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
