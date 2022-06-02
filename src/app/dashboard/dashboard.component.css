@@ -5,7 +5,8 @@ h2 {
   
   .heroes-menu {
     padding: 0;
-    margin: auto;
+    /* margin: auto; */
+    margin-left: 5px;
     max-width: 1000px;
   
     /* flexbox */
