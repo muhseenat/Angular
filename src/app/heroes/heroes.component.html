@@ -1,10 +1,10 @@
 <h2>FOOTBALL HEROES</h2>
 <ul class="heroes">
-    <li *ngFor="let i of hero"><button type="button" [class.selected]="i ===selectedHero" (click)="onSelect(i)">
-        <span class="badge">{{i.id}}</span>
+    <li *ngFor="let i of hero"><button type="button" [class.selected]="i ===selectedHero">
+       <a routerLink="/detail/:{{i.id}}"> <span class="badge">{{i.id}}</span></a>
 
         <span class="name">{{i.name}}</span>
     </button></li>
 </ul>
 
-<app-hero-details [hero]="selectedHero"></app-hero-details>
+<!-- <app-hero-details [hero]="selectedHero"></app-hero-details> -->

@@ -3,3 +3,4 @@
 
     <a *ngIf="let i of heroes ">{{i}}</a>>
 </div>
+<a *ngFor="let i of heroes" routerLink="/detail/{{i.id}}" >{{i.name}}</a>
