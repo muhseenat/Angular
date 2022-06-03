@@ -1,4 +1,11 @@
 <h2>FOOTBALL HEROES</h2>
+
+<div>
+    <label for="new hero">Hero name:</label>
+   <input id="new-hero" #heroName  /> 
+<button type="button" (click)="add(heroName.value); heroName.value=''">ADD HERO</button>
+
+</div>
 <ul class="heroes">
     <li *ngFor="let i of hero">
       
@@ -9,9 +16,4 @@
 </li>
 </ul>
 
-<div>
-     <label for="new hero">Hero name:</label>
-    <input id="new-hero" #heroName  /> 
-<button type="button" (click)="add(heroName.value); heroName.value=''">ADD HERO</button>
 
-</div>

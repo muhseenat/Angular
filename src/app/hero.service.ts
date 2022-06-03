@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Hero } from 'src/hero';
+import { Hero } from 'src/app/hero';
 import { HEROES } from 'src/mock-heroes';
 import { MessageService } from './message.service';
 import { Observable,of } from 'rxjs';
@@ -18,12 +18,27 @@ private heroesUrl = 'api/heroes';
     private log(message: string) {
       this.messageService.add(`HeroService: ${message}`);
     }
+
   getHeroes():Observable<Hero []>{
 return this.http.get<Hero[]>(this.heroesUrl).pipe(tap(_=>this.log('fetched heroes')),
 catchError(this.handleError<Hero[]>('getHeroes',[])))
     
   }
 
+  //Not found the id
+  getHeroNo404<Data>(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/?id=${id}`;
+    return this.http.get<Hero[]>(url)
+      .pipe(
+        map(heroes => heroes[0]), // returns a {0|1} element array
+        tap(h => {
+          const outcome = h ? 'fetched' : 'did not find';
+          this.log(`${outcome} hero id=${id}`);
+        }),
+        catchError(this.handleError<Hero>(`getHero id=${id}`))
+      );
+  }
+//get hero by id
 getHero(id:number):Observable<Hero>{
 const url=`${this.heroesUrl}/${id}`;
 return this.http.get<Hero>(url).pipe(
@@ -51,6 +66,14 @@ httpOptions={
 //   )
 
 // }
+
+//update hero
+updateHero(hero: Hero): Observable<any> {
+  return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+    tap(_ => this.log(`updated hero id=${hero.id}`)),
+    catchError(this.handleError<any>('updateHero'))
+  );
+}
 //Add hero 
 addHero(hero:Hero):Observable<Hero>{
   return this.http.post<Hero>(this.heroesUrl,hero,this.httpOptions)

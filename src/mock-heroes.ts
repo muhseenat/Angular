@@ -1,4 +1,4 @@
-import { Hero } from "./hero";
+import { Hero } from "./app/hero";
 
 
 export const HEROES:Hero[]=[
